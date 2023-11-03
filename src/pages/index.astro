@@ -1,15 +1,46 @@
 ---
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <section
+    class="bg-[url('/images/clouds.png')] bg-no-repeat bg-cover bg-center relative min-h-[100svh] lg:min-h-fit"
+  >
+    <div
+      class="container mx-auto px-5 grid lg:grid-cols-2 gap-12 text-white relative min-h-[100svh]"
+    >
+      <div
+        class="flex lg:min-h-screen flex-col relative z-10 h-full justify-center items-center lg:items-start text-center lg:text-left py-10 lg:py-20 drop-shadow-lg max-lg:justify-end"
+      >
+        <h1 class="flex flex-col">
+          <span class="font-normal text-lg lg:text-xl"
+            >Discover the Art of Discipline and Strength at</span
+          >
+          <span
+            class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none mt-4"
+            >Brandon's Taekwondo Academy</span
+          >
+        </h1>
+        <a href="#" class="mt-8 relative w-fit py-2 px-4">
+          <span
+            class="absolute top-0 left-0 w-full h-full bg-blue-600 rotate-3 hover:rotate-0 transition-transform duration-300 ease-in-out"
+          ></span>
+          <span class="relative pointer-events-none font-bold text-lg"
+            >Get enrolled</span
+          >
+        </a>
+      </div>
+      <div class="flex mt-auto items-end justify-end w-fit relative">
+        <img
+          src="/images/hero.png"
+          alt=""
+          class="max-w-full max-h-full object-contain lg:min-h-[750px]"
+        />
+      </div>
+    </div>
+    <div
+      class="absolute min-h-[250px] lg:min-h-[300px] bg-gradient-to-b from-white/0 to-white/100 w-screen bottom-0 left-0"
+    >
+    </div>
+  </section>
+</BaseLayout>

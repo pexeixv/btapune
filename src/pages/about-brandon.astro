@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Banner from "@/components/Banner.astro";
+import banner from "@/assets/clouds.png";
+import { Content } from "@/content/about-brandon.md";
+---
+
+<BaseLayout title="About Brandon | BTA Pune">
+  <Banner text="Brandon's Journey In Taekwondo" image={banner} />
+  <section>
+    <div class="container mx-auto px-5 pt-10 lg:pt-20 grid place-items-center">
+      <iframe
+        src="https://www.youtube.com/embed/Ge4zDFQL26I?si=XBpPRJoDNbyYKhLB"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        class="w-full max-w-3xl aspect-video"></iframe>
+    </div>
+  </section>
+  <section
+    class="bg-cover bg-no-repeat bg-right-top"
+    style="background-image:url(/images/watermark.svg);"
+  >
+    <div
+      class="container mx-auto px-5 py-10 lg:py-20 prose max-w-4xl prose-lg prose-a:decoration-blue-600 prose-strong:text-red-700 prose-p:text-justify"
+    >
+      <Content />
+    </div>
+  </section>
+</BaseLayout>

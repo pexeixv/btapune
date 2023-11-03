@@ -1,0 +1,75 @@
+---
+import { Icon } from "astro-icon";
+import HeaderItem, { IHeaderItem } from "@/components/HeaderItem.astro";
+import HeaderGroup, { IHeaderGroup } from "@/components/HeaderGroup.astro";
+
+export interface IHeaderItems extends Array<IHeaderItem | IHeaderGroup> {}
+
+const defaultHeaderItems: IHeaderItems = [
+  { label: "Home", link: "/" },
+  {
+    label: "About",
+    list: [
+      { label: "About BTA", link: "/about-bta" },
+      { label: "About Brandon", link: "/about-brandon" },
+    ],
+  },
+  {
+    label: "Experts",
+    list: [
+      { label: "Masters", link: "/masters" },
+      { label: "Instructors", link: "/instructors" },
+    ],
+  },
+  { label: "Gallery", link: "/gallery" },
+  { label: "Contact", link: "/contact" },
+];
+
+const {
+  shortLogo = false,
+  HeaderItems = defaultHeaderItems,
+  logoLink = "/",
+} = Astro.props;
+---
+
+<header class="sticky top-0 left-0 w-full z-50 bg-white shadow-lg">
+  <div
+    class="container mx-auto px-5 py-4 flex flex-col lg:flex-row items-center justify-between"
+  >
+    <div class="flex items-center justify-between w-full">
+      <a href="/" class="bg-white scale-[2.3] origin-top-left rounded-full">
+        <img src="/images/logo.png" alt="" class="h-10" />
+      </a>
+      <button class="lg:hidden" onclick="toggleMenu()">
+        <Icon name="mdi:hamburger-menu" id="open-menu" height="30" />
+        <Icon name="mdi:close" class="hidden" id="close-menu" height="30" />
+      </button>
+    </div>
+
+    <nav id="menu" class="hidden lg:flex gap-8 py-4 lg:py-0">
+      <ul class="flex flex-col lg:flex-row items-center gap-8 font-bold w-full">
+        {
+          HeaderItems.map((item: IHeaderItem | IHeaderGroup) => {
+            if ("list" in item) return <HeaderGroup {item} />;
+            return <HeaderItem {item} />;
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  const openMenu = document.querySelector("#open-menu");
+  const closeMenu = document.querySelector("#close-menu");
+  const menu = document.querySelector("#menu");
+  const HeaderItems = document.querySelectorAll("[data-menu-item]");
+
+  const toggleMenu = () => {
+    openMenu.classList.toggle("hidden");
+    closeMenu.classList.toggle("hidden");
+    menu.classList.toggle("hidden");
+    menu.classList.toggle("flex");
+  };
+  HeaderItems.forEach((item) => item.addEventListener("click", toggleMenu));
+</script>

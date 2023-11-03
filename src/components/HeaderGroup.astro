@@ -1,0 +1,36 @@
+---
+import { IHeaderItem } from "@/components/HeaderItem.astro";
+import HeaderItem from "@/components/HeaderItem.astro";
+import { Icon } from "astro-icon";
+
+export interface IHeaderGroup {
+  label: string;
+  list: Array<IHeaderItem>;
+}
+interface Props {
+  item: IHeaderGroup;
+}
+const { item } = Astro.props;
+---
+
+<div class="group relative">
+  <li
+    class="hover:text-accent transition-colors cursor-pointer text-center flex items-center gap-2 justify-center"
+    onclick="toggleSubMenu(this)"
+  >
+    <span class="whitespace-nowrap">{item.label}</span>
+    <span class="h-5 w-5"><Icon name="tabler:chevron-down" /></span>
+  </li>
+  <ul
+    class="hidden lg:group-hover:flex lg:absolute flex-col bg-dark/90 pt-3 text-light/80 lg:text-light lg:py-3 px-4 rounded -left-4 gap-4 lg:gap-2 text-center lg:text-left bg-white lg:shadow-lg"
+  >
+    {item.list.map((li) => <HeaderItem item={li} />)}
+  </ul>
+</div>
+
+<script is:inline>
+  const toggleSubMenu = (e) => {
+    e.nextElementSibling.classList.toggle("hidden");
+    e.nextElementSibling.classList.toggle("flex");
+  };
+</script>

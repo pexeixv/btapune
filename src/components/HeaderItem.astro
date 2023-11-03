@@ -1,0 +1,17 @@
+---
+export interface IHeaderItem {
+  label: string;
+  link: string;
+}
+interface Props {
+  item: IHeaderItem;
+}
+const { item } = Astro.props;
+---
+
+<li
+  class="whitespace-nowrap hover:text-accent transition-colors"
+  data-menu-item
+>
+  <a href={item.link}>{item.label}</a>
+</li>
