@@ -1,0 +1,75 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Banner from "@/components/Banner.astro";
+import banner from "@/assets/clouds.png";
+---
+
+<BaseLayout>
+  <Banner text="Gallery" image={banner} />
+
+  <section>
+    <div class="container mx-auto px-5 py-10 lg:py-20">
+      <div
+        id="gallery"
+        gallery
+        configuration
+        data-nanogallery2='{
+      "thumbnailWidth": "auto" , "thumbnailHeight" : 200 }'
+        {/* eslint-disable */}
+      >
+        <a
+          href=""
+          data-ngkind="album"
+          data-ngid="1"
+          data-ngthumb="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          >Apple</a
+        >
+        <a
+          href="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          data-ngid="10"
+          data-ngalbumid="1"
+          data-ngthumb="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          >Apple 1</a
+        >
+        <a
+          href="https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          data-ngid="11"
+          data-ngalbumid="1"
+          data-ngthumb="https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          >Apple 2</a
+        >
+
+        <a
+          href=""
+          data-ngkind="album"
+          data-ngid="2"
+          data-ngthumb="https://images.pexels.com/photos/2872767/pexels-photo-2872767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          >Banana</a
+        >
+        <a
+          href="https://images.pexels.com/photos/2872767/pexels-photo-2872767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          data-ngid="20"
+          data-ngalbumid="2"
+          data-ngthumb="https://images.pexels.com/photos/2872767/pexels-photo-2872767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          >Banana 1</a
+        >
+        <a
+          href="https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          data-ngid="21"
+          data-ngalbumid="2"
+          data-ngthumb="https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          >Banana 2</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script
+    type="module"
+    src="node_modules/nanogallery2/dist/jquery.nanogallery2.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="node_modules/nanogallery2/dist/css/nanogallery2.min.css"
+  />
+</BaseLayout>
