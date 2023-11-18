@@ -2,6 +2,69 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Banner from "@/components/Banner.astro";
 import banner from "@/assets/clouds.png";
+
+const galleryData = [
+  {
+    name: "Album 1",
+    thumb:
+      "https://images.pexels.com/photos/6253312/pexels-photo-6253312.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    photos: [
+      {
+        thumb:
+          "https://images.pexels.com/photos/6253312/pexels-photo-6253312.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        href: "https://images.pexels.com/photos/6253312/pexels-photo-6253312.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        text: "Photo 1",
+      },
+      {
+        href: "https://images.pexels.com/photos/5999193/pexels-photo-5999193.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        text: "Photo 2",
+      },
+    ],
+  },
+  {
+    name: "Album 2",
+    thumb:
+      "https://images.pexels.com/photos/6253298/pexels-photo-6253298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    photos: [
+      {
+        thumb:
+          "https://images.pexels.com/photos/6253298/pexels-photo-6253298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        href: "https://images.pexels.com/photos/6253298/pexels-photo-6253298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        text: "Photo 3",
+      },
+      {
+        href: "https://images.pexels.com/photos/7045370/pexels-photo-7045370.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        text: "Photo 4",
+      },
+    ],
+  },
+];
+
+const generateMarkup = () => {
+  let markup = "";
+  let albumCounter = 1;
+  let photoCounter = 0;
+
+  galleryData.forEach((album) => {
+    const firstPhoto = album.photos[0];
+    const albumThumb =
+      album.thumb || (firstPhoto ? firstPhoto.thumb || firstPhoto.href : "");
+
+    markup += `<a href="" data-ngkind="album" data-ngid="${albumCounter}" data-ngthumb="${albumThumb}">${album.name}</a>`;
+
+    album.photos.forEach((photo) => {
+      const photoId = `${albumCounter}${photoCounter}`;
+      const thumbnail = photo.thumb || photo.href;
+      markup += `<a href="${photo.href}" data-ngid="${photoId}" data-ngalbumid="${albumCounter}" data-ngthumb="${thumbnail}">${photo.text}</a>`;
+      photoCounter++;
+    });
+
+    photoCounter = 0;
+    albumCounter++;
+  });
+
+  return markup;
+};
 ---
 
 <BaseLayout>
@@ -14,63 +77,25 @@ import banner from "@/assets/clouds.png";
         gallery
         configuration
         data-nanogallery2='{
-      "thumbnailWidth": "auto" , "thumbnailHeight" : 200 }'
+      "thumbnailWidth": "auto",
+      "thumbnailHeight" : 250
+    }'
         {/* eslint-disable */}
       >
-        <a
-          href=""
-          data-ngkind="album"
-          data-ngid="1"
-          data-ngthumb="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          >Apple</a
-        >
-        <a
-          href="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          data-ngid="10"
-          data-ngalbumid="1"
-          data-ngthumb="https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          >Apple 1</a
-        >
-        <a
-          href="https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          data-ngid="11"
-          data-ngalbumid="1"
-          data-ngthumb="https://images.pexels.com/photos/209439/pexels-photo-209439.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          >Apple 2</a
-        >
-
-        <a
-          href=""
-          data-ngkind="album"
-          data-ngid="2"
-          data-ngthumb="https://images.pexels.com/photos/2872767/pexels-photo-2872767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          >Banana</a
-        >
-        <a
-          href="https://images.pexels.com/photos/2872767/pexels-photo-2872767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          data-ngid="20"
-          data-ngalbumid="2"
-          data-ngthumb="https://images.pexels.com/photos/2872767/pexels-photo-2872767.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          >Banana 1</a
-        >
-        <a
-          href="https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          data-ngid="21"
-          data-ngalbumid="2"
-          data-ngthumb="https://images.pexels.com/photos/5966630/pexels-photo-5966630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          >Banana 2</a
-        >
+        <Fragment set:html={generateMarkup()} />
       </div>
     </div>
-  </section>
 
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
     <script
-    type="module"
-    src="https://unpkg.com/nanogallery2/dist/jquery.nanogallery2.js"></script>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/nanogallery2/dist/css/nanogallery2.min.css"
-  />
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"
+    ></script>
+    <script
+      type="module"
+      src="https://unpkg.com/nanogallery2@3.0.5/dist/jquery.nanogallery2.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/nanogallery2@3.0.5/dist/css/nanogallery2.min.css"
+    />
+  </section>
 </BaseLayout>
