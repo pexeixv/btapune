@@ -21,15 +21,11 @@ const defaultHeaderItems: IHeaderItems = [
       { label: "Instructors", link: "/instructors" },
     ],
   },
-  { label: "Gallery", link: "/gallery" },
+  // { label: "Gallery", link: "/gallery" },
   { label: "Contact", link: "/contact" },
 ];
 
-const {
-  shortLogo = false,
-  HeaderItems = defaultHeaderItems,
-  logoLink = "/",
-} = Astro.props;
+const { HeaderItems = defaultHeaderItems } = Astro.props;
 ---
 
 <header class="sticky top-0 left-0 w-full z-50 bg-white shadow-lg">
